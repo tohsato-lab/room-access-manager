@@ -1,4 +1,4 @@
-# room-access-manager
+# Room Access Manager
 **コミットは必ずDevelop以下のブランチで！！！**
 
 ## ブランチの構造
@@ -15,7 +15,7 @@
 ``` bash
 $ git clone https://github.com/tohsato-lab/room-access-manager.git # gitリポジトリを落としてくる。
 $ cd room-access-manager
-$ git branch -b dev/<自分の名前> # 自分専用のブランチを作る。<>は入れなくていい。
+$ git checkout -b dev/<自分の名前> # 自分専用のブランチを作る。<>は入れなくていい。
 ```
 
 ## Upload

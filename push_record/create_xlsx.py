@@ -62,7 +62,7 @@ def set_sheet(template,output_xlsx,log_dict,user_dict={}):
             else:
                 name = log_dict[day][user_id]["name"]
                 
-             if len(log_dict[day][user_id]['time'])==1:
+            if len(log_dict[day][user_id]['time'])==1:
                 #退出記録がない場合は"22:00"を追加
                 log_dict[day][user_id]['time'].append("22:00")
                 

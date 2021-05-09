@@ -17,7 +17,7 @@ def get_text(client,dm_id):
         else:
             resent_text = False
             return resent_text
-    except () as e:
+    except IndexError as e:
         print(e)
         resent_text = False
         return resent_text
@@ -36,7 +36,7 @@ def get_user_id_list(client,channel_id):
         else:
             user_ids=[]
         return user_ids
-    except () as e:
+    except Exception as e:
         print(e)
         user_ids = []
         return user_ids
@@ -55,7 +55,7 @@ def get_user_info(client,user_id):
         else:
             user_info=False
             return user_info
-    except () as e:
+    except Exception as e:
         #何かしらのエラーが出た時
         user_info = False
         return user_info
@@ -75,7 +75,7 @@ def open_DM_channnel(client,user_id):
         else:
             DM_channel_id = False
             return DM_channel_id
-    except () as e:
+    except Exception as e:
         print(e)
         DM_channel_id = False
         return

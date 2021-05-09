@@ -19,8 +19,14 @@ def get_text(client,dm_id):
             return resent_text
     except IndexError as e:
         print(e)
+        print("please write student ID")
         resent_text = False
         return resent_text
+    except Exception as e:
+        #何かしらのエラーが出た時
+        print(e)
+        user_info = False
+        return user_info
 
 def get_user_id_list(client,channel_id):
     """

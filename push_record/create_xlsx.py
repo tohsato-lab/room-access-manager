@@ -66,7 +66,7 @@ def set_sheet(template,output_xlsx,log_dict,user_dict={}):
             sheet.cell(row=5+index_number, column=4, value=name)#名前
             sheet.cell(row=5+index_number, column=5, value="クリエーションコア3階 遠里研究室")#場所
             sheet.cell(row=5+index_number, column=6, value=log_dict[day][user_id]['time'][0])#入出時間
-            sheet.cell(row=5+index_number, column=7, value=log_dict[day][user_id]['time'][0])#退出時間
+            sheet.cell(row=5+index_number, column=7, value=log_dict[day][user_id]['time'][1])#退出時間
             index_number+=1
     original.save(output_name)
     return output_name

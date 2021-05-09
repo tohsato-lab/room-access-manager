@@ -13,9 +13,9 @@
 └── token.ini
 ```
 
-## publish_recodeの中身
+## push_recodeの中身
 ```
-- publish_record_main.py
+- push_record_main.py
   こいつのメイン関数を呼び出すといい。
   ここをいじくることでlog/とoutput/の中身を処理の後に消すかどうかを決める。デフォルトでは消さない設定になっている。
   

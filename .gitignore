@@ -276,3 +276,7 @@ Thumbs.db
 # End of https://www.toptal.com/developers/gitignore/api/pycharm,python,vscode,jupyternotebooks
 
 .idea/*
+
+
+# ignore token and channel ID folder
+token.ini

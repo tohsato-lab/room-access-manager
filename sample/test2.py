@@ -18,7 +18,6 @@ def on_connect_nfc(tag):
         )
         #return student_id, student_name
         print(student_id, student_name)
-        return student_id, student_name
     except Exception as e:
         print("error: %s" % e)
 def main():

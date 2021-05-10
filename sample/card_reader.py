@@ -2,6 +2,7 @@
 import binascii
 import nfc
 import time
+import datetime
 def on_connect_nfc(tag):
     try:
         servc = 0x1A8B
@@ -17,8 +18,10 @@ def on_connect_nfc(tag):
         .rstrip("\x00")
         )
         #return student_id, student_name
+        dt_now = datetime.datetime.now()
+        print(dt_now.strftime('%H:%M'))
         print(student_id, student_name)
-        return student_id, student_name
+        return student_id, student_name, dt_now.strftime('%H:%M')
     except Exception as e:
         print("error: %s" % e)
 def main():

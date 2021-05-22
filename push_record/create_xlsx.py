@@ -83,6 +83,7 @@ def create_xlsx(template,log_folder,output_xlsx,remove_file=False,user_dict={}):
     xlsxファイルを作り出す
     return 作り出したxlsxファイルの名前
     """
+    os.makedirs(output_xlsx, exist_ok=True)
     log_dict = get_logs(log_folder,remove_file)
     output_name = set_sheet(template,output_xlsx,log_dict,user_dict)
     return output_name

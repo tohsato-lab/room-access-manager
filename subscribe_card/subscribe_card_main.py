@@ -1,4 +1,3 @@
-# 京都大学学生証 学籍番号と名前（半角カナ）を返す
 import datetime
 import time
 
@@ -32,7 +31,8 @@ def on_connect_nfc(tag):
 def main():
     clf = nfc.ContactlessFrontend('usb')
     while True:
-        print(clf.connect(rdwr={'on-connect': on_connect_nfc}))
+        clf.connect(rdwr={'on-connect': on_connect_nfc})
+        # SE処理
         time.sleep(3)
 
 

@@ -15,7 +15,7 @@ def file_open(file_path):
     data = ast.literal_eval(data)
     return data
 
-def remove_file(file_path):
+def remove(file_path):
     """
     ファイルを消す
     """
@@ -31,7 +31,7 @@ def get_logs(folder_name,remove_file):
     for file_path in day_file_list:
         data = file_open(file_path)
         if remove_file==True:
-            remove_file(file_path)
+            remove(file_path)
         file_path = os.path.basename(file_path).split(".")[0][4:]
         data_dict.update([(file_path,data)])
     return data_dict

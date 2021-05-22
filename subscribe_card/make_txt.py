@@ -7,6 +7,7 @@ This is a temporary script file.
 
 import datetime
 import json
+import os
 from pathlib import Path
 
 log_dir = "../log/"
@@ -69,6 +70,7 @@ def exit_file(student_id, name, time, filename):
 
 
 def make_text(student_id, name, time):
+    os.makedirs(log_dir, exist_ok=True)
     filename = nowday()
 
     # ファイルが有無の条件分岐

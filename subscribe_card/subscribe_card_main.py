@@ -1,10 +1,14 @@
 import datetime
+from pathlib import Path
 import time
 
 import nfc
 from nfc.tag import tt3
 
 from make_txt import make_text
+from sound import play_sound
+
+sound_dir = '../sounds'
 
 
 def on_connect_nfc(tag):
@@ -24,15 +28,16 @@ def on_connect_nfc(tag):
         print(dt_now.strftime('%H:%M'))
         print(student_id, student_name)
         make_text(student_id=student_id, name=student_name, time=dt_now.strftime('%H:%M'))
+        play_sound(str(Path(sound_dir).joinpath("thank_you.wav")))
     except Exception as e:
         print("error: %s" % e)
+        play_sound(str(Path(sound_dir).joinpath("get_mad.wav")))
 
 
 def main():
     clf = nfc.ContactlessFrontend('usb')
     while True:
         clf.connect(rdwr={'on-connect': on_connect_nfc})
-        # SE処理
         time.sleep(3)
 
 

@@ -9,7 +9,7 @@ import datetime
 import json
 from pathlib import Path
 
-log_dir = "./log/"
+log_dir = "../log/"
 
 
 # 年月日

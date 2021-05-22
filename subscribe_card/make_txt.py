@@ -7,7 +7,9 @@ This is a temporary script file.
 
 import datetime
 import json
-import os
+from pathlib import Path
+
+log_dir = "./log/"
 
 
 # 年月日
@@ -25,49 +27,52 @@ def nowday():
 
 # 入出時
 def enter_file(student_id, name, time, filename):
-    time_list = []
-    time_list.append(time)
+    time_list = [time]
 
     key1 = ['name', 'time']
     value1 = [name, time_list]
     dic1 = {k: v for k, v in zip(key1, value1)}
 
-    dic2 = {"%s" % (student_id): dic1}
+    dic2 = {"%s" % student_id: dic1}
     print(dic2)
     st = json.dumps(dic2, ensure_ascii=False)
 
-    f = open('%s.txt' % (filename), 'w', encoding="utf_8")
+    f = open(Path(log_dir).joinpath('{}.txt'.format(filename)), 'w', encoding="utf_8")
     f.write(st)
     f.close()
 
 
 # 退出時
-def exit_file(student_id, time, filename):
+def exit_file(student_id, name, time, filename):
     # load file
-    load_data = eval(open('%s.txt' % (filename), encoding="utf_8").read())
+    load_data: dict = eval(open(Path(log_dir).joinpath('{}.txt'.format(filename)), encoding="utf_8").read())
 
-    if "%s" % (student_id) in load_data.keys():
+    if "%s" % student_id in load_data.keys():
         # 更新
-        print(type(load_data["%s" % (student_id)]["time"]))
-        if len(load_data["%s" % (student_id)]["time"]) < 2:
-            load_data["%s" % (student_id)]["time"].append(time)
-        print(load_data)
-        # write file
+        print(type(load_data["%s" % student_id]["time"]))
+        # 【仕様追加】最新の時間に置き換える
+        if len(load_data["%s" % student_id]["time"]) == 1:
+            load_data["%s" % student_id]["time"].append(time)
+        else:
+            load_data["%s" % student_id]["time"][-1] = time
+    else:
+        time_list = [time]
+        key1 = ['name', 'time']
+        value1 = [name, time_list]
+        dic1 = {k: v for k, v in zip(key1, value1)}
+        load_data.setdefault("%s" % student_id, dic1)
 
-        with open('%s.txt' % (filename), 'w', encoding="utf_8") as fout:
-            fout.write(repr(load_data))
-        del load_data
+    # write file
+    print(load_data)
+    with open(Path(log_dir).joinpath('{}.txt'.format(filename)), 'w', encoding="utf_8") as fout:
+        fout.write(repr(load_data))
 
 
-# 仮の入力データ
-student_id = 26001700234
-name = "イケダナオキ"
-time = "10:00"
+def make_text(student_id, name, time):
+    filename = nowday()
 
-filename = nowday()
-
-# ファイルが有無の条件分岐
-if os.path.exists('%s.txt' % (filename)):
-    exit_file(student_id, time, filename)
-else:
-    enter_file(student_id, name, time, filename)
+    # ファイルが有無の条件分岐
+    if Path(log_dir).joinpath('{}.txt'.format(filename)).exists():
+        exit_file(student_id, name, time, filename)
+    else:
+        enter_file(student_id, name, time, filename)

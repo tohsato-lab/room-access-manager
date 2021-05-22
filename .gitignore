@@ -279,4 +279,6 @@ Thumbs.db
 
 
 # ignore token and channel ID folder
-token.ini
+*.ini
+*.txt
+*.xlsx

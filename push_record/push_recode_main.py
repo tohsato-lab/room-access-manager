@@ -37,9 +37,8 @@ def main():
     #os.remove(sended_file_path)
 
 if __name__ == '__main__':
-    # 水曜日13:15のjob実行を登録
     # main()
-    schedule.every().monday.at("10:00").do(main)
+    schedule.every().saturday.at("10:00").do(main)
     while True:
         schedule.run_pending()
         time.sleep(1)

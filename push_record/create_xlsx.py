@@ -26,7 +26,7 @@ def get_logs(folder_name,remove_file):
     一週間分のテキストを1日づつ呼び出す
     返り値 {day:{{id:{name:'...','time':[... , ...]}}}, ...}
     """
-    day_file_list=glob.glob(folder_name+"/*.txt")
+    day_file_list=sorted(glob.glob(folder_name+"/*.txt"))
     data_dict={}
     for file_path in day_file_list:
         data = file_open(file_path)
@@ -61,11 +61,11 @@ def set_sheet(template,output_xlsx,log_dict,user_dict={}):
                 name = user_dict[user_id]['name']
             else:
                 name = log_dict[day][user_id]["name"]
-                
+
             if len(log_dict[day][user_id]['time'])==1:
                 #退出記録がない場合は"22:00"を追加
                 log_dict[day][user_id]['time'].append("22:00")
-                
+
             sheet.cell(row=5+index_number, column=2, value=day[:2]+"/"+day[2:])#日付
             sheet.cell(row=5+index_number, column=3, value=int(user_id))#student_ID　学生番号
             sheet.cell(row=5+index_number, column=4, value=name)#名前

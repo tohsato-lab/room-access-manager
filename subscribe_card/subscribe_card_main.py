@@ -31,7 +31,7 @@ def on_connect_nfc(tag):
         play_sound(str(Path(sound_dir).joinpath("thank_you.wav")))
     except Exception as e:
         print("error: %s" % e)
-        play_sound(str(Path(sound_dir).joinpath("get_mad.wav")))
+        play_sound(str(Path(sound_dir).joinpath("i_do_not_understand.wav")))
 
 
 def main():

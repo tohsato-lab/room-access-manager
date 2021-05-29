@@ -1,3 +1,5 @@
+import shutil
+
 from get_userdata_from_slack import get_user_dict
 from create_xlsx import create_xlsx
 import send_to_slack
@@ -10,7 +12,7 @@ def get_data_set():
     template_xlsx="../template/template.xlsx"
     log_folder="../log"
     output_xlsx="../output"
-    remove_file=True
+    remove_file=False
     return template_xlsx,log_folder,output_xlsx,remove_file
 
 def get_token_channelID():
@@ -35,6 +37,8 @@ def main():
 
     send_to_slack.send_xlsx(token=token,channel_id=channel_id,sended_file_path = sended_xlsx_path)
     #os.remove(sended_file_path)
+    shutil.rmtree(log_folder)
+    os.makedirs(log_folder, exist_ok=True)
 
 if __name__ == '__main__':
     # main()

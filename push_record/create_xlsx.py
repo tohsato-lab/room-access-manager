@@ -44,7 +44,7 @@ def get_term():
     """
     now = datetime.datetime.now()
     end = now + datetime.timedelta(hours=12) - datetime.timedelta(days=1)
-    start = end - datetime.timedelta(days=7)
+    start = end - datetime.timedelta(days=6)
     term = start.strftime("%Y%m%d")+"-"+end.strftime("%m%d")
     return term
 

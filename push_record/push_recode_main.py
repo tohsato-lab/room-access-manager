@@ -23,6 +23,12 @@ def get_token_channelID():
     channel_id = data[1].replace('\n','')
     return token,channel_id
 
+
+def reset_log(log_folder:str):
+    shutil.rmtree(log_folder)
+    os.makedirs(log_folder, exist_ok=True)
+
+
 def main():
     token, channel_id = get_token_channelID()
 
@@ -35,10 +41,12 @@ def main():
                                    remove_file=remove_file,
                                    user_dict=user_dict)
 
-    send_to_slack.send_xlsx(token=token,channel_id=channel_id,sended_file_path = sended_xlsx_path)
+    result = send_to_slack.send_xlsx(token=token,channel_id=channel_id,sended_file_path = sended_xlsx_path)
+    if result:
+        print('reset log')
+        reset_log(log_folder)
     #os.remove(sended_file_path)
-    shutil.rmtree(log_folder)
-    os.makedirs(log_folder, exist_ok=True)
+
 
 if __name__ == '__main__':
     # main()

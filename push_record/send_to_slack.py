@@ -9,26 +9,26 @@ def send_file(client,sended_file_path,channel,comment=None,title=None,file_type=
                                        initial_comment=comment,
                                        file_type=file_type
                                        )
-        if response['ok'] == False:
-            print("error")
-    except () as e:
+    except Exception as e:
         print(e)
-        pass
-
+        return False
+    return response['ok']
 
 def send_xlsx(token,channel_id,sended_file_path=None):
     client = WebClient(token=token)
     comment = "入退出記録"
     title = sended_file_path.split("/")[-1]
     if sended_file_path != None:
-        send_file(client=client,
-                  sended_file_path=sended_file_path,
-                  channel=channel_id,
-                  title=title,
-                  comment=comment,
-                  file_type="xlsx")
+        result = send_file(client=client,
+                          sended_file_path=sended_file_path,
+                          channel=channel_id,
+                          title=title,
+                          comment=comment,
+                          file_type="xlsx")
+        return result
     else:
         print("please write file_path")
+        return False
 
 def main():
     send_xlsx_path="../output/"+"hogehoge.xlsx"

@@ -1,6 +1,8 @@
 import ast
 import glob
 import os
+from pathlib import Path
+
 import openpyxl as ox
 import datetime
 
@@ -51,6 +53,8 @@ def set_sheet(template,output_xlsx,log_dict,user_dict={}):
     #template.xlsxを呼び出し、log_dictに記述しているデータを上書きする。そのあと、output_xlsxにセーブ
     term = get_term()
     output_name = output_xlsx+"/"+term+"_研究室入退室管理簿_計算生物学研究室.xlsx"
+    if Path(output_name).exists():
+        Path(output_name).rename(output_name + '.bak_' + datetime.datetime.now().strftime('%Y%m%d_%H%M%S'))
     original = ox.load_workbook(template)
     sheet = original['Sheet1']
     index_number = 0

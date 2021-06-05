@@ -2,10 +2,9 @@
 trap 'last' {1,2,3,15}
 
 last() {
-  aplay './sounds/panic.wav' &&
 	kill `ps aux | grep "push_recode_main" | grep -v "grep" | awk '{print $2}'` &>/dev/null
 	kill `ps aux | grep "subscribe_card_main" | grep -v "grep" | awk '{print $2}'` &>/dev/null
-
+  aplay './sounds/panic.wav'
 	exit 1
 }
 

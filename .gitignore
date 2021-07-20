@@ -282,5 +282,5 @@ Thumbs.db
 *.ini
 log/
 output/
-*.xlsx
+# *.xlsx
 log.txt

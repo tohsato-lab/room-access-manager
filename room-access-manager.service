@@ -1,0 +1,15 @@
+[Unit]
+Description = room access manager daemon
+
+[Service]
+ExecStart = /home/pi/room-access-manager/launch.sh
+Restart = always
+Type = simple
+User=pi
+Group=pi
+SyslogIdentifier=RoomAccessManager
+
+
+[Install]
+WantedBy = multi-user.target
+

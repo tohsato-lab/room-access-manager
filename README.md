@@ -21,6 +21,10 @@ hogehoge
 ```
 正常にインストールが完了した後、カードリーダを接続する。
 
+3. サービスの登録（オプション）
+raspberryPIの/etc/systemd/system/直下に"room-access-manager.service"を配置する  
+※これをすることで、電源投入直後にアプリが起動させることができる。万が一アプリがバグった場合は、電源を引っこ抜いてリセットすることができる（力技）
+
 ## 実行
 ```shell
 bash launch.sh

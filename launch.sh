@@ -1,4 +1,6 @@
+#!/usr/bin/env bash
 set -e
+cd `dirname $0`
 
 # kill signal キャッチ
 trap 'last' {1,2,3,15}

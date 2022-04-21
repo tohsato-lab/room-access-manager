@@ -1,3 +1,5 @@
+set -e
+
 # kill signal キャッチ
 trap 'last' {1,2,3,15}
 
